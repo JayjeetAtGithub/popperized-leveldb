@@ -9,14 +9,14 @@ steps:
     fi
 
 - id: build
-  uses: ./builder
+  uses: ./docker
   runs: ['./scripts/build.sh']
 
 - id: test
-  uses: ./builder
+  uses: ./docker
   runs: ['./scripts/test.sh']
 
 - id: benchmark
-  uses: ./builder
+  uses: ./docker
   runs: ['./scripts/benchmark.sh']
 
