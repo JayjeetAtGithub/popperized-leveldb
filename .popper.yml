@@ -1,0 +1,22 @@
+steps:
+- id: clone
+  uses: docker://alpine/git:v2.24.3
+  runs: [sh, -ec]
+  args:
+  - |
+    if [ ! -d "leveldb/" ]; then
+      git clone --recurse-submodules https://github.com/google/leveldb.git
+    fi
+
+- id: build
+  uses: ./builder
+  runs: ['./scripts/build.sh']
+
+- id: test
+  uses: ./builder
+  runs: ['./scripts/test.sh']
+
+- id: benchmark
+  uses: ./builder
+  runs: ['./scripts/benchmark.sh']
+
